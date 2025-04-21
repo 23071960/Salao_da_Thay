@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Feedback visual
       form.reset();
       showMessage('✅ Dados salvos com sucesso!', 'success');
-      window.location.href = "/Salao_da_Thay/index.html"; // ou use window.location.replace("/home")
+      window.location.href = "../index.html"; // ou use window.location.replace("/home")
       
 
     } catch (error) {
