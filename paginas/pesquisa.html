@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Formulário de Cliente - Salão da Thay</title>
+  <link rel="stylesheet" href="/styles/pesquisa.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+  <h1>Formulário de Cliente - Salão da Thay</h1>
+  <form id="form-cliente">
+    
+    <!-- Dados Pessoais -->
+    <fieldset>
+      <legend>Dados Pessoais</legend>
+      <label>Nome completo: <input type="text" name="nome" required></label><br>
+      <label>Endereço: <input type="text" name="endereco"></label><br> 
+      <label>Telefone: <input type="tel" name="telefone" id="clientPhone"></label><br>   
+      <label>Data de nascimento: <input type="date" name="nascimento"></label><br>
+    </fieldset>
+
+    <!-- Cabelo -->
+    <fieldset>
+      <legend>Cabelo</legend>
+      <label>Tipo de cabelo:<br>
+        <input type="radio" name="tipo_cabelo" value="Liso"> Liso
+        <input type="radio" name="tipo_cabelo" value="Ondulado"> Ondulado
+        <input type="radio" name="tipo_cabelo" value="Cacheado"> Cacheado
+        <input type="radio" name="tipo_cabelo" value="Crespo"> Crespo
+      </label><br>
+
+      <label>Estado atual:
+        <select name="estado_cabelo">
+          <option value="Natural">Natural</option>
+          <option value="Quimicamente tratado">Quimicamente tratado</option>
+          <option value="Tingido">Tingido</option>
+        </select>
+      </label><br>
+
+      <label>Deseja mudar a cor? 
+        <input type="radio" name="mudar_cor" value="Sim"> Sim
+        <input type="radio" name="mudar_cor" value="Não"> Não
+      </label><br>
+
+      <label>Oleosidade:
+        <select name="oleosidade">
+          <option value="Seco">Seco</option>
+          <option value="Normal">Normal</option>
+          <option value="Oleoso">Oleoso</option>
+        </select>
+      </label><br>
+
+      <label>Textura:
+        <select name="textura">
+          <option value="Fina">Fina</option>
+          <option value="Média">Média</option>
+          <option value="Grossa">Grossa</option>
+        </select>
+      </label><br>
+
+      <label>Procedimento mais comum:
+        <select name="procedimento">
+          <option value="Corte">Corte</option>
+          <option value="Coloração">Coloração</option>
+          <option value="Alisamento">Alisamento</option>
+          <option value="Hidratação">Hidratação / Nutrição</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <!-- Autoestima -->
+    <fieldset>
+      <legend>Autoestima e Emoções</legend>
+      <label>Como você se sente com sua aparência hoje? (1 a 5)
+        <input type="range" name="aparencia" min="1" max="5">
+      </label><br>
+
+      <label>Motivação ao vir ao salão:<br>
+        <input type="radio" name="motivacao" value="Beleza"> Me sentir mais bonita<br>
+        <input type="radio" name="motivacao" value="Relaxar"> Relaxar<br>
+        <input type="radio" name="motivacao" value="Evento"> Me preparar para um evento<br>
+        <input type="radio" name="motivacao" value="Autocuidado"> Cuidar de mim mesma<br>
+      </label><br>
+
+      <label>Autoestima hoje (1 a 5):
+        <input type="range" name="autoestima" min="1" max="5">
+      </label><br>
+
+      <label>Quando foi a última vez que fez algo por você?
+        <select name="tempo_autocuidado">
+          <option value="Essa semana">Essa semana</option>
+          <option value="Último mês">Último mês</option>
+          <option value="Faz tempo">Faz tempo</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <!-- Estilo e Preferências -->
+    <fieldset>
+      <legend>Personalidade e Estilo</legend>
+      <label>Você se define como:<br>
+        <input type="checkbox" name="estilo" value="Criativa"> Criativa
+        <input type="checkbox" name="estilo" value="Discreta"> Discreta
+        <input type="checkbox" name="estilo" value="Vaidosa"> Vaidosa
+        <input type="checkbox" name="estilo" value="Prática"> Prática
+      </label><br>
+
+      <label>Onde se sente mais feliz:
+        <select name="felicidade">
+          <option value="Cidade">Cidade</option>
+          <option value="Praia">Praia</option>
+          <option value="Campo">Campo</option>
+          <option value="Casa">Casa</option>
+        </select>
+      </label><br>
+
+      <label>Você gosta de:
+        <textarea name="gostos" placeholder="Ex: Música, conversar, silêncio..."></textarea>
+      </label>
+    </fieldset>
+
+    <!-- Saúde e Hábitos -->
+    <fieldset>
+      <legend>Hábitos e Saúde</legend>
+      <label>Pratica exercícios?
+        <select name="exercicios">
+          <option value="Sim, regularmente">Sim, regularmente</option>
+          <option value="Às vezes">Às vezes</option>
+          <option value="Não">Não</option>
+        </select>
+      </label><br>
+
+      <label>Tem filhos?
+        <input type="radio" name="tem_filhos" value="Sim"> Sim
+        <input type="radio" name="tem_filhos" value="Não"> Não
+      </label><br>
+
+      <label>Possui alergia a produtos?
+        <input type="radio" name="alergia" value="Não"> Não
+        <input type="radio" name="alergia" value="Sim"> Sim
+        <input type="text" name="descricao_alergia" placeholder="Se sim, qual?">
+      </label><br>
+
+      <label>Frequência de ida ao salão:
+        <select name="frequencia_salao">
+          <option value="Semanal">Semanal</option>
+          <option value="Quinzenal">A cada 15 dias</option>
+          <option value="Mensal">Mensal</option>
+          <option value="Eventual">Eventualmente</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <!-- Expectativas -->
+    <fieldset>
+      <legend>Expectativas</legend>
+      <label>O que você espera do atendimento hoje?<br>
+        <textarea name="expectativa" rows="4" placeholder="Conte seus desejos, sentimentos ou necessidades..."></textarea>
+      </label>
+    </fieldset>
+
+    <button type="submit">Enviar</button>
+  </form>
+  <!-- Adicione no final do body, após os outros scripts -->
+  
+<script type="module" src="/scripts/form-script.js"></script>
+  <script src="/scripts/mcs_cel.js"></script>
+</body>
+</html>
