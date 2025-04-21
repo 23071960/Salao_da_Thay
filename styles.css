@@ -1,4 +1,8 @@
+/* Variáveis de cores */
+@import url("styles/dados_recebidos.css");
 @import url("styles/pesquisa.css");
+
+
 :root {
     --primary-color: #d4a373;
     --secondary-color: #fefae0;

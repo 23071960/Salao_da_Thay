@@ -77,6 +77,15 @@ body {
     background-color: #5e35b1;
     transform: scale(1.05);
   }
+
+  input[name="nascimento"] {
+    font-family: monospace; /* Alinhamento visual */
+    letter-spacing: 1px;   /* Espaçamento entre barras */
+  }
+  
+  input:invalid {
+    border-color: #ff4444; /* Feedback visual se inválido */
+  }
   
   @keyframes pulse {
     0% {

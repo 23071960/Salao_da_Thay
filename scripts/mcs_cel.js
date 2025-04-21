@@ -15,10 +15,51 @@ document.getElementById('clientPhone').addEventListener('input', function (e) {
       input.value = value.replace(/(\d{0,2})/, '($1');
     }
   });
- flatpickr(".datepicker", {
-    dateFormat: "dd/mm/yyyy",
-    allowInput: true, // Permite editar manualmente
-    locale: "pt"      // Português
+  function formatarData(input) {
+    // Remove tudo que não é dígito
+    let valor = input.value.replace(/\D/g, '');
+    
+    // Aplica a máscara: dd/mm/aaaa
+    if (valor.length > 4) {
+      valor = valor.replace(/^(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3');
+    } else if (valor.length > 2) {
+      valor = valor.replace(/^(\d{2})(\d{0,2})/, '$1/$2');
+    }
+    
+    input.value = valor;
+  }
+
+  // Validação ao enviar o formulário
+  document.querySelector("form").addEventListener("submit", function(e) {
+    const dataInput = document.querySelector("input[name='nascimento']");
+    const regexData = /^\d{2}\/\d{2}\/\d{4}$/;
+    
+    if (!regexData.test(dataInput.value)) {
+      alert("Data inválida! Use o formato dd/mm/aaaa.");
+      e.preventDefault(); // Impede o envio
+      dataInput.focus();
+    }
   });
+
+  function validarDataReal(dataStr) {
+    const [dia, mes, ano] = dataStr.split('/').map(Number);
+    const data = new Date(ano, mes - 1, dia);
+    return (
+      data.getDate() === dia &&
+      data.getMonth() === mes - 1 &&
+      data.getFullYear() === ano
+    );
+  }
+  
+  // Modifique o listener do formulário:
+  document.querySelector("form").addEventListener("submit", function(e) {
+    const dataInput = document.querySelector("input[name='nascimento']");
+    if (!/^\d{2}\/\d{2}\/\d{4}$/.test(dataInput.value) || 
+        !validarDataReal(dataInput.value)) {
+      alert("Data inválida ou inexistente!");
+      e.preventDefault();
+    }
+  });
+  
 
   

@@ -2,16 +2,16 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"/>
-  <title>Formulário de Cliente - Salão da Thay</title>
-
+  <title>Formulário de Cliente - Salão da Thay</title>  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
+
+  <link rel="stylesheet" href="/styles.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="../styles.css"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> 
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
 </head>
 
 <body>
@@ -24,7 +24,19 @@
       <label>Nome completo: <input type="text" name="nome" required></label><br>
       <label>Endereço: <input type="text" name="endereco"></label><br> 
       <label>Telefone: <input type="tel" name="telefone" id="clientPhone"></label><br>   
-       <label>Data de nascimento: <input type="date" name="nascimento" placeholder="Selecione a data"><br>
+      <label>
+        Data de nascimento: 
+        <input 
+          type="text" 
+          name="nascimento" 
+          placeholder="dd/mm/aaaa"
+          inputmode="numeric"  
+          maxlength="10"       
+          oninput="formatarData(this)" 
+          pattern="\d{2}/\d{2}/\d{4}"  
+        >
+      </label>
+    </fieldset>
 
     <!-- Cabelo -->
     <fieldset>
@@ -171,7 +183,7 @@
   </form>
   <!-- Adicione no final do body, após os outros scripts -->
   
-<script src="../scripts/form-script.js"></script>
-  <script src="../scripts/mcs_cel.js"></script>
+<script type="module" src="/scripts/form-script.js"></script>
+  <script src="/scripts/mcs_cel.js"></script>
 </body>
 </html>
