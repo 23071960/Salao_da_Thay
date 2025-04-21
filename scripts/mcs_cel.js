@@ -15,5 +15,10 @@ document.getElementById('clientPhone').addEventListener('input', function (e) {
       input.value = value.replace(/(\d{0,2})/, '($1');
     }
   });
+ flatpickr(".datepicker", {
+    dateFormat: "d/m/Y",
+    allowInput: true, // Permite editar manualmente
+    locale: "pt"      // Português
+  });
 
   
