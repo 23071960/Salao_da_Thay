@@ -16,7 +16,7 @@ document.getElementById('clientPhone').addEventListener('input', function (e) {
     }
   });
  flatpickr(".datepicker", {
-    dateFormat: "d/m/Y",
+    dateFormat: "dd/mm/yyyy",
     allowInput: true, // Permite editar manualmente
     locale: "pt"      // Português
   });
