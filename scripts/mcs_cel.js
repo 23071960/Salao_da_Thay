@@ -41,15 +41,7 @@ document.getElementById('clientPhone').addEventListener('input', function (e) {
     }
   });
 
-  function validarDataReal(dataStr) {
-    const [dia, mes, ano] = dataStr.split('/').map(Number);
-    const data = new Date(ano, mes - 1, dia);
-    return (
-      data.getDate() === dia &&
-      data.getMonth() === mes - 1 &&
-      data.getFullYear() === ano
-    );
-  }
+ 
   
   // Modifique o listener do formulário:
   document.querySelector("form").addEventListener("submit", function(e) {
