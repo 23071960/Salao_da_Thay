@@ -1,0 +1,154 @@
+/* === Estilo Alegre com Roxo e Fundo Acentuado === */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to right, #d1c4e9, #f3e5f5);
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2, h3 {
+    color: #7e57c2;
+    text-align: center;
+  }
+  
+  /* Container principal */
+  .form-container {
+    background: #ffffff;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Seção de dados do cliente */
+  .cliente-info {
+    background: #ede7f6;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 2px solid #b39ddb;
+  }
+  
+  .cliente-info h3 {
+    margin-top: 0;
+    color: #7e57c2;
+    font-size: 1.2em;
+  }
+  
+  .cliente-info p {
+    margin: 8px 0;
+    color: #5e35b1;
+    font-weight: 500;
+  }
+  
+  /* Formulário */
+  #form-agendamento label {
+    display: block;
+    margin-top: 20px;
+    color: #555;
+    font-weight: 600;
+  }
+  
+  #form-agendamento input,
+  #form-agendamento select,
+  #form-agendamento textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 2px solid #9575cd;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #ede7f6;
+  }
+  
+  #form-agendamento textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* Botões */
+  #form-agendamento button[type="submit"] {
+    background-color: #7e57c2;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 30px auto 0;
+    display: block;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: pulse 1.5s infinite;
+  }
+  
+  #form-agendamento button[type="submit"]:hover {
+    background-color: #5e35b1;
+    transform: scale(1.05);
+  }
+  
+  /* Validação */
+  #form-agendamento input:invalid {
+    border-color: #ff4444;
+  }
+  
+  .error-message {
+    color: #ff4444;
+    font-size: 0.8em;
+    margin-top: 0.2em;
+  }
+  
+  /* Animações */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(126, 87, 194, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 12px rgba(126, 87, 194, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(126, 87, 194, 0);
+    }
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .loader {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+  }
+  .btn-voltar {
+    display: inline-block;
+    margin: 10px 0;
+    color: #9c27b0;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 600px) {
+    .form-container {
+      padding: 20px;
+      margin: 15px;
+    }
+    
+    .cliente-info {
+      padding: 15px;
+    }
+    
+    #form-agendamento input,
+    #form-agendamento select,
+    #form-agendamento textarea {
+      padding: 10px;
+    }
+  }
