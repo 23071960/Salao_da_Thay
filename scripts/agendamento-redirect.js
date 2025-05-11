@@ -5,6 +5,6 @@ document.querySelectorAll('.btn-agendar').forEach(btn => {
     const telefone = btn.dataset.telefone;
 
     sessionStorage.setItem('dadosClienteParaAgendamento', JSON.stringify({ nome, telefone }));
-    window.location.href = '../paginas/agendamentos.html';
+    window.location.href = '/agendamentos.html';
   });
 });

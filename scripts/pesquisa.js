@@ -1,163 +1,148 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  // 1. Verificação Inicial
-  if (!window.supabase) {
-    console.error('Erro: Supabase não foi inicializado');
-    alert('Sistema não está pronto. Recarregue a página.');
-    return;
-  }
-
-  // 2. Aplicar máscaras
-  aplicarMascaras();
-
-  // 3. Restaurar pesquisa se voltou do agendamento
-  const pesquisaSalva = sessionStorage.getItem('pesquisaParcial');
-  if (pesquisaSalva) {
-    const { dadosFormulario, ultimoCampo } = JSON.parse(pesquisaSalva);
-    preencherFormulario(dadosFormulario);
-    if (ultimoCampo) {
-      const campo = document.getElementById(ultimoCampo);
-      if (campo) campo.focus();
+document.addEventListener('DOMContentLoaded', function() {
+    // Verifica se o Supabase está disponível
+    if (!window.supabase) {
+        console.error('Supabase não está disponível');
+        alert('Erro de configuração. Recarregue a página.');
+        return;
     }
-    sessionStorage.removeItem('pesquisaParcial');
-  }
 
-  // 4. Configurar Eventos dos Botões
-  document.getElementById('btn-salvar-continuar')?.addEventListener('click', async (e) => {
-    e.preventDefault();
-    await salvarCliente(false); // false = não redirecionar para agendamento
-  });
-
-  document.getElementById('btn-agendar')?.addEventListener('click', async (e) => {
-    e.preventDefault();
-    await salvarCliente(true); // true = redirecionar para agendamento
-  });
-
-  // Função para obter todos os dados do formulário
-  function obterDadosFormulario() {
-    const form = document.getElementById('form-cliente');
-    const formData = new FormData(form);
-    const dados = {};
-    
-    for (const [key, value] of formData.entries()) {
-      // Para checkboxes/radios com mesmo name
-      if (dados[key] !== undefined) {
-        if (!Array.isArray(dados[key])) {
-          dados[key] = [dados[key]];
-        }
-        dados[key].push(value);
-      } else {
-        dados[key] = value;
-      }
+    // Elementos do formulário com verificações
+    const formCliente = document.getElementById('form-cliente');
+    if (!formCliente) {
+        console.error('Formulário não encontrado');
+        return;
     }
-    
-    return dados;
-  }
 
-  // Função para preencher o formulário com dados salvos
-  function preencherFormulario(dados) {
-    for (const [name, value] of Object.entries(dados)) {
-      const elements = document.querySelectorAll(`[name="${name}"]`);
-      
-      elements.forEach(element => {
-        if (element.type === 'checkbox' || element.type === 'radio') {
-          if (Array.isArray(value)) {
-            element.checked = value.includes(element.value);
-          } else {
-            element.checked = (element.value === value);
-          }
-        } else {
-          element.value = value;
-        }
-      });
+    const btnAgendar = document.getElementById('btn-agendar');
+    const telefoneInput = document.getElementById('agendamento-telefone');
+    const dataNascInput = document.getElementById('agendamento-data-nascimento');
+
+    // Verifica elementos críticos
+    if (!btnAgendar || !telefoneInput || !dataNascInput) {
+        console.error('Elementos do formulário não encontrados');
+        return;
     }
-  }
 
-  // Função principal para salvar cliente
-  async function salvarCliente(redirecionarParaAgendamento) {
-    try {
-      // 1. Obter e validar dados básicos
-      const nome = document.querySelector('[name="nome"]')?.value.trim();
-      const telefone = document.getElementById('agendamento-telefone')?.value;
-      const telefoneNumeros = telefone?.replace(/\D/g, '') || '';
-
-      if (!nome) throw new Error('Por favor, informe o nome completo');
-      if (telefoneNumeros.length < 10 || telefoneNumeros.length > 11) {
-        throw new Error('Informe um telefone válido com DDD (10 ou 11 dígitos)');
-      }
-
-      // 2. Obter todos os dados do formulário
-      const dadosFormulario = obterDadosFormulario();
-      
-      // 3. Preparar dados para o Supabase
-      const dadosCliente = {
-        nome,
-        telefone: telefoneNumeros,
-        nascimento: dadosFormulario['agendamento-data-nascimento']?.split('/').reverse().join('-'),
-        data_cadastro: new Date().toISOString(),
-        //pesquisa_data: dadosFormulario // Salva todos os dados da pesquisa
-      };
-
-      // 4. Verificar se cliente já existe
-      const { data: clienteExistente, error: erroBusca } = await supabase
-        .from('clientes')
-        .select('id, nome, telefone')
-        .eq('telefone', telefoneNumeros)
-        .maybeSingle();
-
-      if (erroBusca) throw new Error('Erro ao verificar cliente existente');
-
-      // 5. Salvar no Supabase
-      let resultado;
-      if (clienteExistente) {
-        const { data, error } = await supabase
-          .from('clientes')
-          .update(dadosCliente)
-          .eq('id', clienteExistente.id)
-          .select()
-          .single();
+    // Função para formatar a data no padrão ISO (YYYY-MM-DD)
+    function formatarDataParaISO(dataString) {
+        if (!dataString) return null;
         
-        if (error) throw error;
-        resultado = data;
-      } else {
-        const { data, error } = await supabase
-          .from('clientes')
-          .insert(dadosCliente)
-          .select()
-          .single();
-        
-        if (error) throw error;
-        resultado = data;
-      }
-
-      if (redirecionarParaAgendamento) {
-        // 6. Salvar estado atual da pesquisa
-        const activeElement = document.activeElement;
-        sessionStorage.setItem('pesquisaParcial', JSON.stringify({
-          dadosFormulario,
-          ultimoCampo: activeElement?.id || null
-        }));
-
-        // 7. Redirecionar para agendamento
-        sessionStorage.setItem('dadosClienteParaAgendamento', JSON.stringify({
-          id: resultado.id,
-          nome: resultado.nome,
-          telefone: resultado.telefone,
-          cliente_id: resultado.id
-        }));
-
-        window.location.href = 'agendamentos.html';
-      } else {
-        alert('Dados salvos com sucesso! Continue sua pesquisa.');
-      }
-
-    } catch (error) {
-      console.error('Erro no processamento:', error);
-      alert(error.message || 'Erro ao processar os dados');
+        const partes = dataString.split('/');
+        if (partes.length === 3) {
+            return `${partes[2]}-${partes[1]}-${partes[0]}`; // YYYY-MM-DD
+        }
+        return null;
     }
-  }
 
-  // Função para aplicar máscaras (mantida igual)
-  function aplicarMascaras() {
-    // ... (código existente da função aplicarMascaras)
-  }
+    // Função para validar formulário
+    function validarFormulario() {
+        const nomeInput = formCliente.querySelector('input[name="nome"]');
+        if (!nomeInput?.value.trim()) {
+            alert('Por favor, preencha o nome completo.');
+            return false;
+        }
+        
+        const telefone = telefoneInput.value.replace(/\D/g, '');
+        if (telefone.length < 11) {
+            alert('Por favor, insira um telefone válido com DDD.');
+            return false;
+        }
+        
+        return true;
+    }
+
+    // Função para obter dados do formulário de forma segura
+    function obterDadosFormulario() {
+        const dados = {
+            nome: formCliente.querySelector('input[name="nome"]')?.value.trim() || '',
+            endereco: formCliente.querySelector('input[name="endereco"]')?.value.trim() || '',
+            telefone: telefoneInput.value.trim(),
+            nascimento: formatarDataParaISO(dataNascInput.value.trim()),
+            tipo_cabelo: formCliente.querySelector('input[name="tipo_cabelo"]:checked')?.value,
+            estado_cabelo: formCliente.querySelector('select[name="estado_cabelo"]')?.value,
+            // Adicione outros campos conforme necessário
+        };
+        
+        return dados;
+    }
+
+    // Função para enviar dados para o Supabase
+    async function enviarDados(dados) {
+        try {
+            const { data, error } = await window.supabase
+                .from('clientes')
+                .insert([dados])
+                .select(); // Adicionado .select() para retornar os dados inseridos
+            
+            if (error) throw error;
+            return data;
+        } catch (error) {
+            console.error('Erro ao enviar dados:', error);
+            throw error;
+        }
+    }
+
+    // Evento do botão Agendar - CORRIGIDO para salvar em sessionStorage
+    btnAgendar.addEventListener('click', async function(e) {
+        e.preventDefault();
+        
+        if (!validarFormulario()) return;
+        
+        const dados = obterDadosFormulario();
+        console.log('Dados a serem enviados:', dados);
+        
+        try {
+            btnAgendar.disabled = true;
+            btnAgendar.textContent = 'Salvando...';
+            
+            // Envia dados para o Supabase e recebe a resposta com o ID gerado
+            const resultado = await enviarDados(dados);
+            
+            if (resultado && resultado[0]) {
+                // Persiste os dados do cliente na sessionStorage
+                sessionStorage.setItem('dadosClienteParaAgendamento', JSON.stringify({
+                    id: resultado[0].id, // ID gerado pelo Supabase
+                    nome: dados.nome,
+                    telefone: dados.telefone,
+                    // Outros campos relevantes para o agendamento
+                }));
+                
+                // Redireciona para a página de agendamentos
+                window.location.href = '../paginas/agendamentos.html';
+            } else {
+                throw new Error('Não foi possível obter o ID do cliente após o cadastro');
+            }
+        } catch (error) {
+            alert(`Erro ao salvar: ${error.message}`);
+        } finally {
+            btnAgendar.disabled = false;
+            btnAgendar.textContent = '📅 Salvar e Agendar';
+        }
+    });
+
+    // Evento de submit do formulário
+    formCliente.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        if (!validarFormulario()) return;
+        
+        const dados = obterDadosFormulario();
+        const submitBtn = formCliente.querySelector('[type="submit"]');
+        
+        try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Salvando...';
+            
+            await enviarDados(dados);
+            alert('Dados salvos com sucesso!');
+            formCliente.reset();
+        } catch (error) {
+            alert(`Erro ao salvar: ${error.message}`);
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar';
+            }
+        }
+    });
 });

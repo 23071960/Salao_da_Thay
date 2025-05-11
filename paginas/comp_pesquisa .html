@@ -26,13 +26,7 @@
       <label>Telefone: <input type="text" id="agendamento-telefone" placeholder="Digite seu telefone" autocomplete="off" /></label><br>
       <label>Data de nascimento: <input type="text" id="agendamento-data-nascimento" placeholder="DD/MM/AAAA" autocomplete="off" /></label><br>
     </fieldset>
-    <fieldset>
-      <legend>Agendar um horário ou continuar com a pesquisa</legend>
-    <div class="botoes-acao">
-      <button type="button" id="btn-agendar">📅 Salvar e Agendar</button>     
-    </div>
-  </fieldset>
-    <!-- Cabelo -->
+        <!-- Cabelo -->
     <fieldset>
       <legend>Cabelo</legend>
       <label>Tipo de cabelo:<br>
@@ -178,8 +172,6 @@
       <legend>Agendamento</legend>
       <div>
       <button type="submit" >Enviar </button>
-      <button type="submit" id="btn-agendar" style="margin: 10px auto; display: block">📅 Agendar Procedimento</button>
-      <input type="hidden" name="agendamento_realizado" id="agendamento-realizado" value="false">
       </div>
     </fieldset>
 
@@ -189,7 +181,7 @@
   <div id="lista-clientes"></div>
   <script src="/scripts/supabase.js"></script>
   <script src="/scripts/mascaras.js"></script>
-  <script src="/scripts/pesquisa.js"></script>
+  <script src="/scripts/Comp_pesquisa.js"></script>
   
 </body>
 </html>

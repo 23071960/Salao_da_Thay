@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agendamento - Salão da Thay</title>
-  <link rel="stylesheet" href="../Salao_da_Thay/styles/agendamentos.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/imask"></script> 
+  <link rel="stylesheet" href="../styles/agendamentos.css" />
 </head>
 <body>
   <main class="form-container">
@@ -29,9 +31,14 @@
 
       <label for="data_consulta">Data:</label>
       <input type="date" id="data_consulta" name="data_consulta" required />
-
+   
+      <div id="horarios-disponiveis" style="display: none;">
+        <label>Horários Disponíveis:</label>
+        <div id="lista-horarios" class="lista-horarios"></div>
+      </div>
+      
       <label for="hora_inicio">Hora:</label>
-      <input type="time" id="hora_inicio" name="hora_inicio" required />
+      <input type="time" id="hora_inicio" name="hora_inicio" required list="horarios-disponiveis" />
 
       <label for="valor_cobrado">Valor (R$):</label>
       <input type="number" id="valor_cobrado" name="valor_cobrado" step="0.01" min="0" required>
@@ -51,11 +58,9 @@
     </form>
     <a href="/paginas/pesquisa.html" class="btn-voltar">← Voltar à Pesquisa</a>
   </main>
+<script src="/scripts/supabase.js"></script>
+<!-- <script src="/scripts/mascaras.js"></script> -->
+<script src="/scripts/agendamento.js"></script>
 
-  <!-- Scripts na ordem correta -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../scripts/supabase.js"></script>
-  <script src="../scripts/mascaras.js"></script>
-  <script src="../scripts/agendamento.js"></script>
 </body>
 </html>

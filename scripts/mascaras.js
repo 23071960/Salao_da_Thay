@@ -1,31 +1,13 @@
-function aplicarMascaraTelefone() {
-  const inputTelefone = document.getElementById('agendamento-telefone');
-  if (!inputTelefone) return;
-
-  inputTelefone.addEventListener('input', function(e) {
-    let valor = e.target.value.replace(/\D/g, '');
-    
-    // Limita a 11 dígitos (DDD + 9 dígitos)
-    if (valor.length > 11) {
-      valor = valor.substring(0, 11);
-    }
-    
-    // Aplica a máscara conforme o tamanho
-    if (valor.length > 0) {
-      if (valor.length <= 10) {
-        // Formato para telefone fixo: (XX) XXXX-XXXX
-        valor = valor.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
-      } else {
-        // Formato para celular: (XX) XXXXX-XXXX
-        valor = valor.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
-      }
-    }
-    
-    e.target.value = valor;
+document.addEventListener('DOMContentLoaded', () => {
+  // Máscara para o campo de telefone
+  IMask(document.getElementById('agendamento-telefone'), {
+    mask: '(00) 00000-0000'
   });
-}
 
-// Aplica a máscara quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
-  aplicarMascaraTelefone();
+  // Máscara para o campo de data de nascimento
+  IMask(document.getElementById('agendamento-data-nascimento'), {
+    mask: '00/00/0000'
+  });
 });
+
+
