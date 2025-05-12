@@ -1,0 +1,257 @@
+/* ===== Estilo Moderno para Salão de Beleza ===== */
+:root {
+  --primary: #9c27b0;
+  --primary-light: #ce93d8;
+  --primary-dark: #7b1fa2;
+  --secondary: #ff9800;
+  --background: #f8f9fa;
+  --surface: #ffffff;
+  --error: #f44336;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Container Principal */
+h1 {
+  color: var(--primary-dark);
+  text-align: center;
+  margin: 30px 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 2px;
+}
+
+/* Formulário */
+#form-cliente {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--surface);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Fieldsets e Legendas */
+fieldset {
+  border: 2px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  padding: 10px;
+  margin-bottom: 15px;
+  position: relative;
+  transition: var(--transition);
+}
+
+fieldset:hover {
+  border-color: var(--primary-light);
+}
+
+legend {
+  color: var(--primary-dark);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0 10px;
+  background-color: var(--surface);
+}
+
+/* Labels e Inputs */
+label {
+  display: block;
+  margin: 15px 0 8px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+  width: 95%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: var(--surface);
+}
+
+textarea:hover {
+  border-color: var(--primary-light);
+}
+
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
+  outline: none;
+}
+
+/* Elementos Específicos */
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: var(--primary);
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  accent-color: var(--primary);
+  margin: 10px 0;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239c27b0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Botões */
+button,
+input[type="submit"] {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  padding:20px 50px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-block;
+  margin: 20px 10px;
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.5);
+}
+
+button:hover,
+input[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#btn-agendar {
+  background: linear-gradient(135deg, var(--secondary), #fb8c00);
+  display: block;
+  margin: 30px auto;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+}
+
+/* Lista de Clientes */
+#lista-clientes {
+  margin-top: 40px;
+}
+.botoes-acao {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.botoes-acao button {
+  flex: 1;
+  max-width: 250px;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#btn-salvar-continuar {
+  background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+  color: white;
+}
+
+#btn-agendar {
+  background: linear-gradient(135deg, #ff9800, #fb8c00);
+  color: white;
+}
+
+.botoes-acao button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+  .botoes-acao {
+    flex-direction: column;
+  }
+  
+  .botoes-acao button {
+    max-width: 100%;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #form-cliente {
+    padding: 20px;
+  }
+  
+  fieldset {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  #form-cliente {
+    padding: 15px;
+  }
+  
+  button, 
+  input[type="submit"] {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
