@@ -1,0 +1,61 @@
+/* styles/dark-theme.css */
+:root {
+  /* Cores Dark Theme */
+  --primary: #ba68c8;
+  --primary-light: #8e24aa;
+  --primary-dark: #4a148c;
+  --secondary: #ffb74d;
+  --secondary-dark: #ff9800;
+  --background: #121212;
+  --surface: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --border-color: #444;
+}
+
+[data-theme="dark"] {
+  /* Aplicação do tema escuro */
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .main-header,
+[data-theme="dark"] .form-container,
+[data-theme="dark"] .data-container,
+[data-theme="dark"] .about,
+[data-theme="dark"] .services,
+[data-theme="dark"] .main-footer {
+  background-color: var(--surface);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .main-nav a {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .main-nav a:hover,
+[data-theme="dark"] .main-nav a.active {
+  background-color: var(--primary);
+  color: var(--surface);
+}
+
+[data-theme="dark"] .service-card {
+  background-color: #333;
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .section-title::after {
+  background-color: var(--primary);
+}
+
+[data-theme="dark"] .footer-social a {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .footer-social a:hover {
+  color: var(--primary);
+}
+
+[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ba68c8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}

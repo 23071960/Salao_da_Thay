@@ -1,0 +1,41 @@
+.confirmation-box {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 50px auto;
+  }
+  
+  .confirmation-box svg {
+    margin-bottom: 20px;
+  }
+  
+  .confirmation-box h1 {
+    color: #4CAF50;
+    margin-bottom: 15px;
+  }
+  
+  .confirmation-box p {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
