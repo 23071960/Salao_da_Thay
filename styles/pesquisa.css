@@ -215,6 +215,103 @@ input[type="submit"]:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* ========================
+   TEMA ESCURO
+======================== */
+body.dark-theme {
+  --primary-color: #e5989b;
+  --secondary-color: #2a2a2a;
+  --accent-color: #6c757d;
+  --dark-color: #f8f9fa;
+  --light-color: #1e1e1e;
+  --text-color: #d1d1d1;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+body.dark-theme .main-header,
+body.dark-theme .form-container,
+body.dark-theme .data-container,
+body.dark-theme .about,
+body.dark-theme .services,
+body.dark-theme .main-footer {
+  background-color: var(--light-color);
+}
+
+body.dark-theme .main-nav a {
+  color: var(--text-color);
+}
+
+body.dark-theme .main-nav a:hover,
+body.dark-theme .main-nav a.active {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+body.dark-theme .cta-button {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+body.dark-theme .cta-button:hover {
+  background-color: #c97c84;
+}
+
+body.dark-theme .service-card {
+  background-color: #333;
+  color: var(--text-color);
+}
+
+body.dark-theme .section-title::after {
+  background-color: var(--primary-color);
+}
+
+body.dark-theme .footer-social a {
+  color: var(--text-color);
+}
+
+body.dark-theme .footer-social a:hover {
+  color: var(--primary-color);
+}
+/* ========================
+   TEMA ESCURO - RODAPÉ
+======================== */
+body.dark-theme .main-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color); /* Certificando-se de que o texto seja claro */
+}
+
+body.dark-theme .footer-contact,
+body.dark-theme .footer-hours,
+body.dark-theme .footer-social {
+  color: var(--light-color); /* Cor do texto no rodapé */
+}
+
+body.dark-theme .footer-contact i,
+body.dark-theme .footer-hours i {
+  color: var(--primary-color); /* Cor dos ícones no rodapé */
+}
+
+
+/* ========================
+   BOTÃO DE ALTERNAÇÃO DE TEMA
+======================== */
+#toggle-theme {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#toggle-theme:hover {
+  background-color: #c08d5a;
+}
 @media (max-width: 600px) {
   .botoes-acao {
     flex-direction: column;
