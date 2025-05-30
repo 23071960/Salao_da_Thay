@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento - Salão da Thay</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/imask"></script> 
+  <link rel="stylesheet" href="../styles/agendamentos.css"/>
+   <link rel="stylesheet" href="../styles/dark-theme.css" id="tema-escuro">
+</head>
+<body class="modo-claro">
+  <main class="form-container">
+    <h1>Agendar Horário</h1>
+    <div id="busca-cliente-container">
+      <label for="busca-cpf">Digite CPF para buscar cliente:</label>
+      <input type="text" id="busca-cpf" placeholder="000.000.000-00" />
+      <button id="btn-buscar-cliente">Buscar</button>
+    </div>
+
+
+    <!-- Seção para exibir dados do cliente -->
+    <div class="dados-cliente">
+      <h3>Dados do Cliente</h3>
+      <p><strong>CPF:</strong> <span id="cliente-cpf"></span></p>
+      <p><strong>Nome:</strong> <span id="cliente-nome"></span></p>
+      <p><strong>Telefone:</strong> <span id="cliente-telefone"></span></p>
+      <p><strong>Data Nasc.:</strong> <span id="cliente-nascimento"></span></p>
+    </div>
+
+    <!-- Cadastro rápido -->
+    <div id="cadastro-rapido-container">
+      <h3>Cadastro Rápido</h3>
+      <form id="form-cadastro-rapido">
+        <label for="cadastro-cpf">CPF:</label>
+        <input type="text" id="cadastro-cpf" name="cpf" placeholder="000.000.000-00" required>
+        
+        <label for="cadastro-nome">Nome Completo:</label>
+        <input type="text" id="cadastro-nome" name="nome" required>
+        
+        <label for="cadastro-telefone">Telefone:</label>
+        <input type="tel" id="cadastro-telefone" name="telefone" placeholder="(00) 00000-0000" required>
+        
+        <label for="cadastro-nascimento">Data de Nascimento:</label>
+        <input type="date" id="cadastro-nascimento" name="data_nascimento" required>
+        
+        <label for="cadastro-endereco">Endereço:</label>
+        <input type="text" id="cadastro-endereco" name="endereco">
+        
+        <button type="submit" id="btn-cadastrar">Cadastrar e Continuar</button>
+        <button type="button" id="btn-cancelar-cadastro">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Formulário de agendamento -->
+    <form id="form-agendamento">
+      <input type="hidden" id="cliente_id" name="cliente_id">
+      
+      <label for="servico_id">Serviço:</label>
+      <select id="servico_id" name="servico_id" required>
+        <option value="" disabled selected>Selecione um serviço</option>
+      </select>
+
+      <label for="data_consulta">Data:</label>
+      <input type="date" id="data_consulta" name="data_consulta" required />
+
+      <div id="horarios-disponiveis">
+        <label>Horários Disponíveis:</label>
+        <div id="lista-horarios" class="lista-horarios"></div>
+      </div>
+
+      <input type="hidden" id="hora_inicio" name="hora_inicio" required />
+      
+      <label for="valor_cobrado">Valor:</label>
+      <input type="text" id="valor_cobrado" name="valor_cobrado" readonly />
+
+      <label for="forma_pagamento">Forma de Pagamento:</label>
+      <select id="forma_pagamento" name="forma_pagamento" required>
+        <option value="" disabled selected>Selecione</option>
+        <option value="dinheiro">Dinheiro</option>
+        <option value="cartao">Cartão</option>
+        <option value="pix">PIX</option>
+      </select>
+
+      <label for="observacoes">Observações:</label>
+      <textarea id="observacoes" name="observacoes" rows="3"></textarea>
+
+      <button type="submit">Confirmar Agendamento</button>
+    </form>
+    <a href="/paginas/pesquisa.html" class="btn-voltar">← Voltar à Pesquisa</a>
+  </main>
+
+  <script src="/scripts/supabase.js"></script>
+  <script src="/scripts/agendamento.js"></script>
+  <script src="/scripts/dark-mode.js"></script>
+</body>
+</html>

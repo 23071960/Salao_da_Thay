@@ -1,0 +1,209 @@
+/* ========== VARIÁVEIS DE CORES ========== */
+:root {
+  --dark-bg: #121212;
+  --dark-surface: #1e1e1e;
+  --dark-surface-variant: #2d2d2d;
+  --dark-surface-secondary: #252525;
+  --dark-text-primary: #e0e0e0;
+  --dark-text-secondary: #b0b0b0;
+  --dark-accent: #ba68c8;
+  --dark-accent-hover: #8e24aa;
+  --dark-border: #333;
+  --dark-border-variant: #444;
+  --dark-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* ========== ESTILOS GLOBAIS ========== */
+.modo-escuro {
+  background-color: var(--dark-bg);
+  color: var(--dark-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========== COMPONENTES COMUNS ========== */
+.modo-escuro .section-title {
+  color: var(--dark-text-primary);
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.modo-escuro .section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--dark-accent);
+  margin: 10px auto 0;
+}
+
+/* ========== FORMULÁRIOS ========== */
+.modo-escuro fieldset,
+.modo-escuro .form-container,
+.modo-escuro #form-cliente {
+  background-color: var(--dark-surface);
+  border-color: var(--dark-border);
+  color: var(--dark-text-primary);
+}
+
+.modo-escuro legend {
+  color: var(--dark-accent);
+  background-color: var(--dark-surface-variant);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.modo-escuro .dados-cliente {
+  background-color: var(--dark-surface-secondary);
+  border-color: var(--dark-border);
+}
+
+.modo-escuro label {
+  color: var(--dark-text-primary);
+}
+
+.modo-escuro input,
+.modo-escuro textarea,
+.modo-escuro select {
+  background-color: var(--dark-surface-variant);
+  color: var(--dark-text-primary);
+  border: 1px solid var(--dark-border-variant);
+}
+
+.modo-escuro input::placeholder,
+.modo-escuro textarea::placeholder {
+  color: var(--dark-text-secondary);
+}
+
+.modo-escuro select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ba68c8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+/* ========== BOTÕES E LINKS ========== */
+.modo-escuro .botoes-acao button,
+.modo-escuro .cta-button {
+  background-color: var(--dark-accent);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.modo-escuro .botoes-acao button:hover,
+.modo-escuro .cta-button:hover {
+  background-color: var(--dark-accent-hover);
+  transform: translateY(-2px);
+}
+
+.modo-escuro a {
+  color: var(--dark-accent);
+  transition: color 0.3s ease;
+}
+
+.modo-escuro a:hover {
+  color: var(--dark-accent-hover);
+}
+
+/* ========== COMPONENTES ESPECÍFICOS ========== */
+.modo-escuro .main-header,
+.modo-escuro .hero,
+.modo-escuro .main-footer {
+  background-color: var(--dark-surface);
+  border-color: var(--dark-border);
+}
+
+.modo-escuro .logo,
+.modo-escuro .slogan,
+.modo-escuro .hero h2,
+.modo-escuro .hero p,
+.modo-escuro .nav-link {
+  color: var(--dark-text-primary);
+}
+
+.modo-escuro .nav-link:hover {
+  background-color: var(--dark-accent);
+  color: white;
+}
+
+.modo-escuro .services {
+  background-color: var(--dark-bg);
+}
+
+.modo-escuro .service-card {
+  background-color: var(--dark-surface-variant);
+  border: 1px solid var(--dark-border);
+  color: var(--dark-text-primary);
+  box-shadow: 0 4px 8px var(--dark-shadow);
+  transition: all 0.3s ease;
+}
+
+.modo-escuro .service-card h3 {
+  color: var(--dark-accent);
+}
+
+.modo-escuro .service-card p {
+  color: var(--dark-text-secondary);
+}
+
+.modo-escuro .service-card:hover {
+  background-color: var(--dark-surface);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px var(--dark-shadow);
+}
+
+.modo-escuro .about {
+  background-color: var(--dark-bg);
+}
+
+.modo-escuro .about-content,
+.modo-escuro .footer-contact,
+.modo-escuro .footer-hours {
+  background-color: var(--dark-surface);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.modo-escuro .footer-contact h3,
+.modo-escuro .footer-hours h3,
+.modo-escuro .footer-social h3 {
+  color: var(--dark-accent);
+}
+
+.modo-escuro .footer-contact p,
+.modo-escuro .footer-hours li,
+.modo-escuro .about p {
+  color: var(--dark-text-secondary);
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 768px) {
+  .modo-escuro .about-content,
+  .modo-escuro .footer-contact,
+  .modo-escuro .footer-hours {
+    padding: 1rem;
+  }
+  
+  .modo-escuro .service-card {
+    margin-bottom: 1rem;
+  }
+  
+  .modo-escuro .section-title::after {
+    width: 40px;
+    height: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modo-escuro .main-header {
+    padding: 0.5rem;
+  }
+  
+  .modo-escuro .logo {
+    font-size: 1.5rem;
+  }
+  
+  .modo-escuro .slogan {
+    font-size: 0.8rem;
+  }
+  
+  .modo-escuro .nav-link {
+    padding: 0.5rem;
+  }
+}

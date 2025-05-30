@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Salão de beleza especializado em autoestima e tratamentos personalizados">
+  <title>Salão da Thay - Beleza e Autoestima</title>
+  
+  <!-- Preconexão para CDN -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Ícones Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Folhas de estilo -->
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/dark-theme.css">>
+ 
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body class="modo-claro">
+  <header class="main-header">
+    <div class="container header-container">
+      <div class="branding">
+        <div class="logo-container">
+          <h1 class="logo">Salão da Thay</h1>
+          <p class="slogan">Realçando sua beleza natural</p>
+        </div>
+        
+        <nav class="main-nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="paginas/pesquisa.html" class="nav-link">Ficha de Autoestima</li>
+            <li><a href="paginas/agendamentos.html" class="nav-link">Agendamento</li>
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="theme-toggle-container">
+        <button id="toggle-theme" class="theme-button" aria-label="Alternar modo escuro">
+          <span id="theme-icon">🌙</span>
+          <span id="theme-text">Modo Escuro</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-content">
+        <h2 id="hero-heading">Transforme seu visual, eleve sua autoestima</h2>
+        <p>No Salão da Thay, cuidamos da sua beleza e bem-estar com tratamentos personalizados</p>
+        <a href="paginas/pesquisa.html" class="cta-button" aria-label="Preencher ficha de autoestima">Preencher Ficha</a>
+      </div>
+    </section>
+
+    <section class="services" aria-labelledby="services-heading">
+      <div class="container">
+        <h2 id="services-heading" class="section-title">Nossos Serviços</h2>
+        <div class="services-grid">
+          <article class="service-card">
+            <i class="fas fa-cut" aria-hidden="true"></i>
+            <h3>Cortes Modernos</h3>
+            <p>Técnicas atualizadas para valorizar seu rosto</p>
+          </article>
+          
+          <article class="service-card">
+            <i class="fas fa-paint-brush" aria-hidden="true"></i>
+            <h3>Coloração</h3>
+            <p>Tendências de cores para renovar seu visual</p>
+          </article>
+          
+          <article class="service-card">
+            <i class="fas fa-spa" aria-hidden="true"></i>
+            <h3>Tratamentos</h3>
+            <p>Cuidados especiais para cabelos saudáveis</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-content">
+          <h2 id="about-heading" class="section-title">Sobre Nós</h2>
+          <p>O Salão da Thay nasceu da paixão por beleza e autoestima. Acreditamos que cada cliente é único e merece um atendimento personalizado.</p>
+          <p>Nossa missão é ajudar você a se sentir incrível, tanto por dentro quanto por fora.</p>
+          <a href="paginas/pesquisa.html" class="cta-button secondary">Conheça Nosso Método</a>
+        </div>
+        
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+               alt="Interior do Salão da Thay" loading="lazy">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+   <hr>
+    <div class="container">
+      <div class="footer-grid">
+        <section class="footer-contact" aria-labelledby="contact-heading">
+          <h3 id="contact-heading">Contato</h3>
+          <address>
+            <p><i class="fas fa-map-marker-alt"></i> Rua Jorge S do Amaral, 380 - Centro</p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+5542984092204">(42) 98409-2204</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:dremerthaynara26@gmail.com">dremerthaynara26@gmail.com</a></p>
+          </address>
+        </section>
+        
+       
+        <section class="footer-hours" aria-labelledby="hours-heading">
+          <h3 id="hours-heading">Horário de Funcionamento</h3>
+          <ul>
+            <li>Segunda a Sexta: 9h às 19h</li>
+            <li>Sábado: 9h às 15h</li>
+            <li>Domingo: Fechado</li>
+          </ul>
+        </section>
+        
+        <section class="footer-social" aria-labelledby="social-heading">
+          <h3 id="social-heading">Siga-nos</h3>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/thaynara_dremer?igsh=YWlkenAwcXBwajRn" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/1BKHBK4BH5/" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://wa.me/5542984092204" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </section>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; <span id="current-year">2025</span> Salão da Thay - Todos os direitos reservados</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/scripts/dark-mode.js"></script>
+  <script>
+    // Atualiza o ano atual automaticamente
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

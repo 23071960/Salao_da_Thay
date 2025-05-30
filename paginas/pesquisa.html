@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Formulário de Cliente - Salão da Thay</title>  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/imask"></script>    
+    <link rel="stylesheet" href="/styles/pesquisa.css">   
+    <link rel="stylesheet" href="/styles/dark-theme.css" id="tema-escuro">
+   
+</head>
+
+<body class="modo-claro">
+    <h1>Salão da Thay<br>Pesquisa e agendamento</h1>
+    <form id="form-cliente">
+
+        <!-- Dados Pessoais -->
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            <label>CPF: <input type="text" id="agendamento-cpf" placeholder="000.000.000-00" autocomplete="off"></label><br>
+            <div id="cpf-status" style="margin-top: -15px; margin-bottom: 15px; font-size: 0.9em;"></div>
+            <label>Nome completo: <input type="text" name="nome" required></label><br>
+            <label>Endereço: <input type="text" name="endereco"></label><br> 
+            <label>Telefone: <input type="text" id="agendamento-telefone" placeholder="Digite seu telefone" autocomplete="off" required></label><br>
+            <label>Data de nascimento: <input type="text" id="agendamento-data-nascimento" placeholder="DD/MM/AAAA" autocomplete="off"></label><br>
+        </fieldset>
+        <!-- Cabelo -->
+        <fieldset>
+            <legend>Cabelo</legend>
+            <label>Tipo de cabelo:<br>
+                <input type="radio" name="tipo_cabelo" value="Liso"> Liso
+                <input type="radio" name="tipo_cabelo" value="Ondulado"> Ondulado
+                <input type="radio" name="tipo_cabelo" value="Cacheado"> Cacheado
+                <input type="radio" name="tipo_cabelo" value="Crespo"> Crespo
+            </label><br>
+
+            <label>Estado atual:
+                <select name="estado_cabelo">
+                    <option value="Natural">Natural</option>
+                    <option value="Quimicamente tratado">Quimicamente tratado</option>
+                    <option value="Tingido">Tingido</option>
+                </select>
+            </label><br>
+
+            <label>Deseja mudar a cor? 
+                <input type="radio" name="mudar_cor" value="Sim"> Sim
+                <input type="radio" name="mudar_cor" value="Não"> Não
+            </label><br>
+
+            <label>Oleosidade:
+                <select name="oleosidade">
+                    <option value="Seco">Seco</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Oleoso">Oleoso</option>
+                </select>
+            </label><br>
+
+            <label>Textura:
+                <select name="textura">
+                    <option value="Fina">Fina</option>
+                    <option value="Média">Média</option>
+                    <option value="Grossa">Grossa</option>
+                </select>
+            </label><br>
+
+            <label>Procedimento mais comum:
+                <select name="procedimento">
+                    <option value="Corte">Corte</option>
+                    <option value="Coloração">Coloração</option>
+                    <option value="Alisamento">Alisamento</option>
+                    <option value="Hidratação">Hidratação / Nutrição</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </label>
+        </fieldset>
+
+        <!-- Autoestima -->
+        <fieldset>
+            <legend>Autoestima e Emoções</legend>
+            <label>Como você se sente com sua aparência hoje? (1 a 10)
+                <input type="range" name="aparencia" min="1" max="10">
+            </label><br>
+
+            <label>Motivação ao vir ao salão:<br>
+                <input type="radio" name="motivacao" value="Beleza"> Me sentir mais bonita<br>
+                <input type="radio" name="motivacao" value="Relaxar"> Relaxar<br>
+                <input type="radio" name="motivacao" value="Evento"> Me preparar para um evento<br>
+                <input type="radio" name="motivacao" value="Autocuidado"> Cuidar de mim mesma<br>
+            </label><br>
+
+            <label>Autoestima hoje (1 a 10):
+                <input type="range" name="autoestima" min="1" max="10">
+            </label><br>
+
+            <label>Quando foi a última vez que fez algo por você?
+                <select name="tempo_autocuidado">
+                    <option value="Essa semana">Essa semana</option>
+                    <option value="Último mês">Último mês</option>
+                    <option value="Faz tempo">Faz tempo</option>
+                </select>
+            </label>
+        </fieldset>
+
+        <!-- Estilo -->
+        <fieldset>
+            <legend>Personalidade e Estilo</legend>
+            <label>Você se define como:<br>
+                <input type="checkbox" name="estilo" value="Criativa"> Criativa
+                <input type="checkbox" name="estilo" value="Discreta"> Discreta
+                <input type="checkbox" name="estilo" value="Vaidosa"> Vaidosa
+                <input type="checkbox" name="estilo" value="Prática"> Prática
+            </label><br>
+
+            <label>Onde se sente mais feliz:
+                <select name="felicidade">
+                    <option value="Cidade">Cidade</option>
+                    <option value="Praia">Praia</option>
+                    <option value="Campo">Campo</option>
+                    <option value="Casa">Casa</option>
+                </select>
+            </label><br>
+
+            <label>Você gosta de:
+                <textarea name="gostos" placeholder="Ex: Música, conversar, silêncio..."></textarea>
+            </label>
+        </fieldset>
+
+        <!-- Saúde -->
+        <fieldset>
+            <legend>Hábitos e Saúde</legend>
+            <label>Pratica exercícios?
+                <select name="exercicios">
+                    <option value="Sim, regularmente">Sim, regularmente</option>
+                    <option value="Às vezes">Às vezes</option>
+                    <option value="Não">Não</option>
+                </select>
+            </label><br>
+
+            <label>Tem filhos?
+                <input type="radio" name="tem_filhos" value="Sim"> Sim
+                <input type="radio" name="tem_filhos" value="Não"> Não
+            </label><br>
+
+            <label>Possui alergia a produtos?
+                <input type="radio" name="alergia" value="Não"> Não
+                <input type="radio" name="alergia" value="Sim"> Sim
+                <input type="text" name="descricao_alergia" placeholder="Se sim, qual?">
+            </label><br>
+
+            <label>Frequência de ida ao salão:
+                <select name="frequencia_salao">
+                    <option value="Semanal">Semanal</option>
+                    <option value="Quinzenal">A cada 15 dias</option>
+                    <option value="Mensal">Mensal</option>
+                    <option value="Eventual">Eventualmente</option>
+                </select>
+            </label>
+        </fieldset>
+
+        <!-- Expectativas -->
+        <fieldset>
+            <legend>Expectativas</legend>
+            <label>O que você espera do atendimento hoje?<br>
+                <textarea name="expectativa" rows="5" placeholder="Conte seus desejos, sentimentos ou necessidades..."></textarea>
+            </label>
+        </fieldset>
+       
+        <!-- Botões de Ação -->
+        <fieldset>
+            <legend>Ações</legend>
+            <div class="botoes-acao">
+                <button type="submit">Salvar Dados</button>
+                <button type="button" id="btn-agendar">📅 Salvar e Agendar</button>
+            </div>
+            <input type="hidden" name="agendamento_realizado" id="agendamento-realizado" value="false">
+        </fieldset>
+    </form>
+
+    <div id="lista-clientes"></div>
+    <script src="/scripts/supabase.js"></script>
+    <script src="/scripts/mascaras.js"></script>
+    <script src="/scripts/pesquisa.js"></script>
+    <script src="/scripts/dark-mode.js"></script> 
+</body>
+</html>
