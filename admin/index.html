@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Painel administrativo do Salão da Thay">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dashboard - Salão da Thay</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="estilos/graficos.css">
+  
+  <!-- Pré-conexão para melhor performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>html{visibility:hidden}</style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <h1 class="logo"><i class="fas fa-spa"></i> Salão da Thay</h1>
+        <p class="slogan">Beleza que transforma</p>
+      </div>
+      
+      <p style="padding:4px 20px 14px"><a href="../index.html" style="color:#fff;text-decoration:underline">← Site público</a></p>
+      <nav class="main-nav">
+        <ul class="nav-list">
+          <li class="nav-item active">
+            <a href="index.html" class="nav-link">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="paginas/clientes.html" class="nav-link">
+              <i class="fas fa-users"></i>
+              <span>Clientes</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="paginas/agenda.html" class="nav-link">
+              <i class="fas fa-calendar-alt"></i>
+              <span>Agendamentos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="paginas/profis.html" class="nav-link">
+              <i class="fas fa-user-md"></i>
+              <span>Profissionais</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="paginas/servicos.html" class="nav-link">
+              <i class="fas fa-cut"></i>
+              <span>Serviços</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="content-header">
+        <h2><i class="fas fa-tachometer-alt"></i> Painel de Controle</h2>
+        <div class="user-profile">
+          <span>Administrador</span>
+          <i class="fas fa-user-circle"></i>
+        </div>
+      </header>
+
+      <!-- Metrics Grid -->
+      <section class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="metric-info">
+            <h3>Clientes Hoje</h3>
+            <p id="clientesHoje">0</p>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="metric-info">
+            <h3>Agendamentos Hoje</h3>
+            <p id="totalAgendamentos">0</p>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">
+            <i class="fas fa-money-bill-wave"></i>
+          </div>
+          <div class="metric-info">
+            <h3>Faturamento Mensal</h3>
+            <p id="faturamentoMensal">R$ 0,00</p>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="metric-info">
+            <h3>Avaliação Média</h3>
+            <p id="avaliacaoMedia">0.0</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section class="charts-container">
+        <div class="chart-card line-chart">
+          <h3><i class="fas fa-chart-line"></i> Agendamentos por Dia</h3>
+          <div class="chart-wrapper">
+            <canvas id="agendamentosChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card pie-chart">
+          <h3><i class="fas fa-chart-pie"></i> Serviços Populares</h3>
+          <div class="chart-content">
+            <div class="legend-container" id="servicosLegend"></div> <!-- Legendas -->
+            <div class="chart-wrapper">
+              <canvas id="servicosChart"></canvas> <!-- Gráfico -->
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card radar-chart">
+          <h3><i class="fas fa-brain"></i> Perfil Médio dos Clientes</h3>
+          <div class="chart-wrapper" >
+            <canvas id="perfilEmocionalChart"></canvas>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <footer class="main-footer">
+    <p>© 2025 Salão da Thay. Todos os direitos reservados.</p>
+  </footer>
+
+ <!-- Bibliotecas -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Script que cria e exporta o cliente supabase -->
+
+<!-- Scripts com lógica que dependem do supabase -->
+
+<!-- script principal que chama as funções, deve vir por último -->
+
+
+<script src="scripts/supabase.js"></script>
+<script src="scripts/auth-loader.js"></script>
+</body>
+</html>

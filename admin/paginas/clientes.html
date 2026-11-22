@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Salão da Thay</title>
+    <link rel="stylesheet" href="../estilos/clientes.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>html{visibility:hidden}</style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="main-header">
+        <h1>Salão da Thay - Gerenciamento de Clientes</h1>
+           <div class="dashboard-btn-container">
+      <a href="../index.html" class="dashboard-btn">
+        <i class="fas fa-tachometer-alt"></i> Voltar ao Dashboard
+      </a>
+    </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Lista de Clientes -->
+        <div class="listbox-container">
+            <h2>Clientes Cadastrados</h2>
+            <select id="clientesList" size="15" class="listbox"></select>
+            <button id="refreshBtn" class="btn">Atualizar Lista</button>
+        </div>
+
+        <!-- Formulário de Edição -->
+        <div class="form-group">
+            <h2>Dados do Cliente</h2>
+            <form id="clienteForm">
+                <input type="hidden" id="clienteId">
+                
+                <div class="form-row">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email">
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="button" id="deleteBtn" class="btn btn-danger">Excluir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="../scripts/supabase.js"></script>
+<script src="../scripts/auth-loader.js"></script>
+</body>
+</html>
+

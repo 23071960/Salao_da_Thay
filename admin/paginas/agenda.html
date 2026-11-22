@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Agendamentos</title>
+    <link rel="stylesheet" href="../estilos/agenda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        
+    </style>
+<style>html{visibility:hidden}</style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1 class="dashboard-title"><i class="fas fa-calendar-alt"></i> Dashboard de Agendamentos</h1>
+        <a href="../index.html" class="dashboard-btn">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Painel Esquerdo - Formulário de Edição -->
+        <div class="panel form-panel">
+            <h2><i class="fas fa-edit"></i> Editar Agendamento</h2>
+            <form id="agendamentoForm">
+                <input type="hidden" id="agendamentoId">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cliente_id"><i class="fas fa-user"></i> Cliente:</label>
+                        <select id="cliente_id" required>
+                            <option value="">Carregando clientes...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="servico_id"><i class="fas fa-cut"></i> Serviço:</label>
+                        <select id="servico_id" required>
+                            <option value="">Carregando serviços...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profissional_id"><i class="fas fa-user-md"></i> Profissional:</label>
+                        <select id="profissional_id" required>
+                            <option value="">Carregando profissionais...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="data_consulta"><i class="fas fa-calendar-day"></i> Data:</label>
+                        <input type="date" id="data_consulta" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hora_inicio"><i class="fas fa-clock"></i> Hora Início:</label>
+                        <input type="time" id="hora_inicio" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hora_fim"><i class="fas fa-clock"></i> Hora Fim:</label>
+                        <input type="time" id="hora_fim" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="valor_cobrado"><i class="fas fa-money-bill-wave"></i> Valor (R$):</label>
+                        <input type="number" id="valor_cobrado" step="0.01" min="0" required placeholder="0,00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pago"><i class="fas fa-cash-register"></i> Pago:</label>
+                        <select id="pago" required>
+                            <option value="true">Sim</option>
+                            <option value="false" selected>Não</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status"><i class="fas fa-info-circle"></i> Status:</label>
+                        <select id="status" required>
+                            <option value="agendado" selected>Agendado</option>
+                            <option value="confirmado">Confirmado</option>
+                            <option value="cancelado">Cancelado</option>
+                            <option value="concluido">Concluído</option>
+                            <option value="nao_compareceu">Não Compareceu</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="forma_pagamento"><i class="fas fa-credit-card"></i> Forma de Pagamento:</label>
+                        <select id="forma_pagamento">
+                            <option value="" selected>Selecione...</option>
+                            <option value="dinheiro">Dinheiro</option>
+                            <option value="cartao_credito">Cartão de Crédito</option>
+                            <option value="cartao_debito">Cartão de Débito</option>
+                            <option value="pix">PIX</option>
+                            <option value="transferencia">Transferência</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="observacoes"><i class="fas fa-sticky-note"></i> Observações:</label>
+                        <textarea id="observacoes" rows="3" placeholder="Anotações sobre o agendamento"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="saveBtn" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Salvar Alterações
+                    </button>
+                    <button type="button" id="clearBtn" class="btn btn-secondary">
+                        <i class="fas fa-broom"></i> Novo Agendamento
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Painel Direito - Lista de Agendamentos -->
+        <div class="panel list-panel">
+            <h2><i class="fas fa-list"></i> Lista de Agendamentos</h2>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="filterData"><i class="fas fa-calendar"></i> Data:</label>
+                    <input type="date" id="filterData">
+                </div>
+                <div class="filter-group">
+                    <label for="filterProfissional"><i class="fas fa-user-md"></i> Profissional:</label>
+                    <select id="filterProfissional">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filterStatus"><i class="fas fa-filter"></i> Status:</label>
+                    <select id="filterStatus">
+                        <option value="">Todos</option>
+                        <option value="agendado">Agendado</option>
+                        <option value="confirmado">Confirmado</option>
+                        <option value="cancelado">Cancelado</option>
+                        <option value="concluido">Concluído</option>
+                        <option value="nao_compareceu">Não Compareceu</option>
+                    </select>
+                </div>
+                <button id="filterBtn" class="btn btn-primary">
+                    <i class="fas fa-filter"></i> Filtrar
+                </button>
+            </div>
+            
+            <table id="agendamentosTable">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Serviço</th>
+                        <th>Data/Hora</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5">Carregando agendamentos...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Processando sua solicitação...</p>
+    </div>
+<script src="../scripts/supabase.js"></script>
+<script src="../scripts/auth-loader.js"></script>
+</body>
+</html>

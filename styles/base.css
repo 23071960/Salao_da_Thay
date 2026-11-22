@@ -1,0 +1,64 @@
+/* styles/base.css */
+:root {
+  /* Cores Light Theme (padrão) */
+  --primary: #9c27b0;
+  --primary-light: #ce93d8;
+  --primary-dark: #7b1fa2;
+  --secondary: #ff9800;
+  --secondary-dark: #e65100;
+  --background: #f8f9fa;
+  --surface: #ffffff;
+  --error: #f44336;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --border-color: #e0e0e0;
+  
+  /* Bordas e Sombras */
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  transition: var(--transition);
+}
+
+/* Estilos compartilhados por todas páginas */
+.cta-button {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.secondary {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+}
+.main-header .container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
+}
+
+.theme-toggle {
+  justify-self: end;
+}

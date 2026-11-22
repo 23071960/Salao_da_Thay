@@ -1,0 +1,185 @@
+/* ====================== */
+/* ESTRUTURA PRINCIPAL */
+/* ====================== */
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+}
+
+.chart-card h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ====================== */
+/* ESTILOS COMUNS A TODOS OS GRÁFICOS */
+/* ====================== */
+
+.chart-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* ====================== */
+/* ESTILOS ESPECÍFICOS POR TIPO DE GRÁFICO */
+/* ====================== */
+
+/* Radar Chart */
+.radar-chart .chart-wrapper {
+    height: 400px;
+    padding: 20px;
+}
+
+/* Pie Chart (Serviços Populares) */
+.pie-chart .chart-wrapper {
+    height: 400px;
+}
+
+.chart-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.legend-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    width: 150px;
+    padding-right: 10px;
+    border-left: 1px solid #e0e0e0;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+/* ====================== */
+/* MENSAGENS DE ERRO/VAZIO */
+/* ====================== */
+
+.mensagem-grafico,
+.sem-dados, 
+.erro-grafico {
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.mensagem-grafico i,
+.sem-dados i, 
+.erro-grafico i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.mensagem-grafico.info,
+.sem-dados {
+    background-color: #e7f5ff;
+    color: #1864ab;
+}
+
+.mensagem-grafico.warning,
+.erro-grafico {
+    background-color: #fff3bf;
+    color: #e67700;
+}
+
+.mensagem-grafico.error {
+    background-color: #ffd8d8;
+    color: #c92a2a;
+}
+
+/* ====================== */
+/* RESPONSIVIDADE */
+/* ====================== */
+
+@media (max-width: 768px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-card {
+        min-height: 350px;
+    }
+
+    /* Layout vertical para gráficos com legenda */
+    .chart-card.servicos-populares,
+    .pie-chart {
+        flex-direction: column;
+    }
+
+    .legend-container {
+        width: 100%;
+        max-height: none;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+        padding-top: 15px;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-card {
+        min-height: 300px;
+    }
+    
+    .radar-chart .chart-wrapper,
+    .pie-chart .chart-wrapper {
+        height: 300px;
+    }
+}
+/* Ajustes de compatibilidade com o dashboard responsivo */
+@media (max-width: 768px) {
+  .chart-content { flex-direction: column; align-items: stretch; }
+  .chart-content .chart-wrapper { width: 100%; min-height: 260px; }
+}
+@media (max-width: 380px) {
+  .charts-container { grid-template-columns: minmax(0, 1fr); }
+}

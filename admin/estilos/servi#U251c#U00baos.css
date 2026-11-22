@@ -1,0 +1,259 @@
+/* Variáveis de cores e estilos */
+:root {
+  --primary-color: #ff6b8b; /* Rosa salão */
+  --secondary-color: #ffb3c1; /* Rosa claro */
+  --accent-color: #ffd166; /* Amarelo dourado */
+  --background-color: #f5f5f5; /* Cinza claro */
+  --card-color: #ffffff; /* Branco */
+  --text-color: #333333; /* Texto escuro */
+  --light-text: #ffffff; /* Texto claro */
+  --border-color: #e0e0e0; /* Bordas cinza */
+  --success-color: #06d6a0; /* Verde */
+  --danger-color: #ef476f; /* Vermelho */
+}
+
+/* Reset e estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header destacado */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-container h1 {
+  color: var(--light-text);
+  font-size: 2rem;
+}
+
+.dashboard-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dashboard-button:hover {
+  background-color: var(--light-text);
+  transform: translateY(-2px);
+}
+
+/* Layout de duas colunas */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Seção de serviços */
+.services-section {
+  background-color: var(--card-color);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.services-section h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.services-table thead {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+}
+
+.services-table th, 
+.services-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.services-table tbody tr:hover {
+  background-color: rgba(255, 107, 139, 0.1);
+}
+
+.refresh-button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.refresh-button:hover {
+  background-color: #ffc43d;
+}
+
+/* Seção de formulário */
+.form-section {
+  background-color: var(--card-color);
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-section h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.service-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.save-button {
+  background-color: var(--success-color);
+  color: var(--light-text);
+}
+
+.new-button {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+}
+
+.delete-button {
+  background-color: var(--danger-color);
+  color: var(--light-text);
+}
+
+.save-button,
+.new-button,
+.delete-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.3s;
+  flex: 1;
+}
+
+.save-button:hover,
+.new-button:hover,
+.delete-button:hover {
+  opacity: 0.9;
+}
+
+/* Loading */
+.loading-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 107, 139, 0.2);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  margin-top: 40px;
+}
+
+footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

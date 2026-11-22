@@ -1,0 +1,116 @@
+@import url('botão_dash.css');
+
+/* Cabeçalho */
+.main-header {
+    background-color: #6a4c93;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.main-header a {
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* Container Principal */
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Lista de Clientes */
+.listbox-container {
+    flex: 1;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+.listbox {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.listbox option {
+    padding: 5px;
+}
+
+.listbox option:hover {
+    background-color: #eee;
+}
+
+/* Formulário de Edição */
+.form-group {
+    flex: 2;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+}
+
+.btn-primary {
+    background-color: #6a4c93;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: white;
+}
+

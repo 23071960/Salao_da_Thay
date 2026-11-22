@@ -1,0 +1,67 @@
+/* Estilos para o botão de dashboard */
+/* Para alinhar os filtros e o botão na mesma linha */
+.filters-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Ajuste para os grupos de filtro */
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Ajuste para o container do botão */
+.dashboard-btn-container {
+    flex: 0 0 auto;
+    margin-top: 0;
+}
+
+.dashboard-btn {
+    display: inline-flex;
+    align-items:center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #9c27b0;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.dashboard-btn:hover {
+    background-color: #7b1fa2;
+    transform: translateY(-2px);
+    box-shadow: 4 8px 12px rgba(0,0,0,0.1);
+}
+
+.dashboard-btn i {
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Ajustes para remover o sidebar */
+.dashboard {
+    display: block;
+}
+
+.content {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+}

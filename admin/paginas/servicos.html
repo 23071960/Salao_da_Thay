@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Serviços - Salão da Thay</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../estilos/serviços.css">
+    <link rel="stylesheet" href="../estilos/botão_dash.css">
+<style>html{visibility:hidden}</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1>Gestão de Serviços do Salão</h1>
+            <a href="../index.html" class="dashboard-button">
+                <i class="fas fa-tachometer-alt"></i> Voltar ao Dashboard
+            </a>
+        </div>
+
+        <div id="loading" class="loading-container">
+            <div class="spinner"></div>
+            <p>Carregando serviços...</p>
+        </div>
+
+        <div class="content-grid">
+            <!-- Lista de Serviços -->
+            <div class="services-section">
+                <h2>Serviços Cadastrados</h2>
+                <table id="servicesList" class="services-table">
+                    <thead>
+                        <tr>
+                            <th>Serviço</th>
+                            <th>Valor (R$)</th>
+                            <th>Duração</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Linhas preenchidas dinamicamente -->
+                    </tbody>
+                </table>
+                <button id="refreshBtn" class="refresh-button">Atualizar Lista</button>
+            </div>
+
+            <!-- Formulário de Edição -->
+            <div class="form-section">
+                <h2>Editar Serviço</h2>
+                <form id="serviceForm" class="service-form">
+                    <input type="hidden" id="serviceId">
+
+                    <div class="form-group">
+                        <label for="servico">Nome do Serviço:</label>
+                        <input type="text" id="servico" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valor">Valor (R$):</label>
+                        <input type="text" id="valor" class="money-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duracao">Duração (minutos):</label>
+                        <input type="number" id="duracao" min="1" max="240" step="1" required placeholder="Ex.: 60">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea id="descricao"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ativo">Status:</label>
+                        <select id="ativo">
+                            <option value="true">Ativo</option>
+                            <option value="false">Inativo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="saveBtn" class="save-button">Salvar</button>
+                        <button type="button" id="newBtn" class="new-button">Novo Serviço</button>
+                        <button type="button" id="deleteBtn" class="delete-button">Excluir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Salão da Thay. Todos os direitos reservados.</p>
+        <p>Versão 2.0 | Painel Administrativo | Powered by Domicio Rosario Pedra</p>
+        <p>E-mail: <a href="mailto:domicio600@gmail.com">domicio600@gmail.com</a></p>
+    </footer>
+
+    
+<script src="../scripts/supabase.js"></script>
+<script src="../scripts/auth-loader.js"></script>
+</body>
+</html>

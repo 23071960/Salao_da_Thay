@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login administrativo - Salão da Thay</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f0f2f5;font:16px Arial,sans-serif;color:#26212a}.card{background:white;padding:32px;max-width:380px;width:calc(100% - 50px);border-radius:16px;box-shadow:0 12px 35px #0002}h1{color:#7b1fa2;font-size:1.65rem}label{display:block;margin-top:17px}input{display:block;box-sizing:border-box;width:100%;padding:12px;margin-top:6px;border:1px solid #bbb;border-radius:7px}button{margin-top:24px;width:100%;padding:13px;border:0;border-radius:7px;color:white;background:#7b1fa2;font-weight:bold;cursor:pointer}button:disabled{opacity:.65}#message{min-height:1.5em;color:#ad2a36}</style></head>
+<body><main class="card"><h1>Salão da Thay</h1><p>Acesso administrativo</p>
+<form id="loginForm"><label for="email">E-mail</label><input id="email" type="email" autocomplete="username" required>
+<label for="password">Senha</label><input id="password" type="password" autocomplete="current-password" required>
+<button id="enter" type="submit">Entrar</button><p id="message" role="alert"></p></form><p style="text-align:center;margin:12px 0 0"><a href="../index.html" style="color:#7b1fa2">Voltar ao site público</a></p></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="scripts/supabase.js"></script><script src="scripts/login.js"></script></body></html>

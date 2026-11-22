@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Profissionais</title>
+    <link rel="stylesheet" href="../estilos/profis.css">
+    <link rel="stylesheet" href="../estilos/botão_dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>html{visibility:hidden}</style>
+</head>
+<body>
+    <div class="dashboard">
+        <main class="content">
+            <header class="header">
+                <h1><i class="fas fa-users"></i> Gerenciamento de Profissionais</h1>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Admin" alt="Usuário">
+                </div>
+            </header>
+                <div class="dashboard-btn-container">
+                    <a href="../index.html" class="dashboard-btn">
+                        <i class="fas fa-tachometer-alt"></i> Voltar ao Dashboard
+                    </a>
+                </div>
+
+            <div class="form-container">
+                <div class="card form-card">
+                    <div class="card-header">
+                        <h2>Cadastrar Novo Profissional</h2>
+                        <button id="newBtn" class="btn-primary">
+                            <i class="fas fa-plus"></i> Novo
+                        </button>
+                    </div>
+
+                    <form id="profissionalForm" class="form">
+                        <input type="hidden" id="profissionalId">
+                        
+                        <div class="form-group">
+                            <label for="pnome"><i class="fas fa-user"></i> Nome:</label>
+                            <input type="text" id="pnome" required placeholder="Digite o nome completo">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="especialidadesInput"><i class="fas fa-certificate"></i> Especialidades:</label>
+                            <div class="tags-input">
+                                <input type="text" id="especialidadesInput" placeholder="Digite e pressione Enter ou vírgula">
+                                <div id="especialidadesTags" class="tags-container"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefone"><i class="fas fa-phone"></i> Telefone:</label>
+                            <input type="text" id="telefone" placeholder="(00) 00000-0000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> E-mail:</label>
+                            <input type="email" id="email" placeholder="profissional@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ativo"><i class="fas fa-toggle-on"></i> Status:</label>
+                            <select id="ativo">
+                                <option value="true">Ativo</option>
+                                <option value="false">Inativo</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" id="saveBtn" class="btn-primary">
+                                <i class="fas fa-save"></i> Salvar
+                            </button>
+                            <button type="button" id="cancelBtn" class="btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card form-card">
+                    <div class="card-header">
+                        <h2>Outras Configurações</h2>
+                    </div>
+                    <form class="form">
+                        <div class="form-group">
+                            <label for="config1"><i class="fas fa-cog"></i> Configuração 1:</label>
+                            <input type="text" id="config1" placeholder="Opção de configuração">
+                        </div>
+                        <div class="form-group">
+                            <label for="config2"><i class="fas fa-sliders-h"></i> Configuração 2:</label>
+                            <select id="config2">
+                                <option value="1">Opção 1</option>
+                                <option value="2">Opção 2</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i> Aplicar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Profissionais Cadastrados</h2>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Pesquisar por nome ou especialidade...">
+                        <div class="filter-buttons">
+                            <button id="filterAll" class="btn-filter active" data-status="all">Todos</button>
+                            <button id="filterActive" class="btn-filter" data-status="true">Ativos</button>
+                            <button id="filterInactive" class="btn-filter" data-status="false">Inativos</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="profissionaisTable">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Especialidades</th>
+                                <th>Contato</th>
+                                <th>Status</th>
+                                <th>Data de Cadastro</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="profissionaisTableBody">
+                            <!-- Os dados serão inseridos dinamicamente via JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="paginationControls" class="pagination">
+                        <!-- Controles de paginação serão adicionados aqui -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Carregando...</p>
+    </div>
+    
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p id="confirmMessage">Deseja realmente excluir este profissional?</p>
+            <div class="modal-actions">
+                <button id="confirmYes" class="btn-primary">Sim</button>
+                <button id="confirmNo" class="btn-secondary">Não</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer dark-footer">
+        <div class="footer-content">
+            <p>© 2025 Salão da Thay. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <p class="version">Versão 2.0 | Painel Administrativo</p>
+                <p class="version">Powered by | Domicio Rosario Pedra</p>
+                <p class="version">
+                    <a href="mailto:domicio600@gmail.com" class="email-link">
+                        <i class="fas fa-envelope"></i> domicio600@gmail.com
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+<script src="../scripts/supabase.js"></script>
+<script src="../scripts/auth-loader.js"></script>
+</body>
+</html>
